@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://xlkildleovy8"]
+
+[ext_resource type="Script" path="res://Enemy/enemy.gd" id="1_8ext6"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xfe0s"]
+
+[node name="Enemy" type="PathFollow3D"]
+loop = false
+script = ExtResource("1_8ext6")
+speed = 2.5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 1.38778e-17, 7.45058e-09, -1.38778e-17, 1, 1.07336e-17, -7.45058e-09, 1.53957e-17, 1, 1.282, 1.5, -0.055)
+mesh = SubResource("CapsuleMesh_xfe0s")
