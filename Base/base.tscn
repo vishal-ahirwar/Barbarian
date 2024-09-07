@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx8541f42ytp1"]
+
+[ext_resource type="Script" path="res://Base/base.gd" id="1_pgbxu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjar4"]
+albedo_color = Color(0.710578, 0.0145333, 5.77569e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vb8rd"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qb4ug"]
+bg_color = Color(0.725435, 0, 0.186355, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[node name="Base" type="Node3D" groups=["base"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1999, 1.83772, -11.2694)
+script = ExtResource("1_pgbxu")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07839, 0)
+radius = 4.0
+height = 8.0
+sides = 16
+material = SubResource("StandardMaterial3D_kjar4")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 91.0
+offset_top = 28.0
+offset_right = -75.0
+offset_bottom = 65.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_vb8rd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qb4ug")
+value = 6.93
