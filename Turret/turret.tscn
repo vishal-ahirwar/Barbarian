@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnu4qnkg01dod"]
+
+[ext_resource type="Script" path="res://Turret/turret.gd" id="1_0b5ws"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_28071"]
+top_radius = 1.0
+height = 3.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_6lp4h"]
+size = Vector3(1.07, 0.465, 0.915)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_221fd"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 1.0
+
+[node name="Turret" type="Node3D"]
+script = ExtResource("1_0b5ws")
+
+[node name="Base" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_28071")
+
+[node name="Visor" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90045, 1.05035)
+mesh = SubResource("BoxMesh_6lp4h")
+
+[node name="Barrel" type="MeshInstance3D" parent="Base/Visor"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.57453)
+mesh = SubResource("CylinderMesh_221fd")
