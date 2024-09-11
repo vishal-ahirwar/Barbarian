@@ -1,11 +1,15 @@
 extends Node3D
+@export var projectile:PackedScene
+@onready var fire_timer: Timer = $FireTimer
+@onready var barrel: MeshInstance3D = $Base/Visor/Barrel
+var enemy_path:Path3D
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	fire_timer.timeout.connect(spawnProjectile)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	
+func spawnProjectile():
+	var shot=projectile.instantiate()
+	add_child(shot)
+	shot.global_position=barrel.global_position

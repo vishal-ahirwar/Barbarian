@@ -2,7 +2,8 @@ extends Camera3D
 @onready var ray_cast_3d: RayCast3D = $RayCast3D
 @export var raycast_range:float=100
 @export var grid_map:GridMap
-@export var turret:PackedScene
+@export var turret_manager:Node3D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -21,15 +22,11 @@ func _process(delta: float) -> void:
 				if grid_map.get_cell_item(cell)==0:
 					Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 					if Input.is_action_just_pressed("add_base"):
-						grid_map.set_cell_item(cell,1)
-						spawnTurret(cell)
+						#grid_map.set_cell_item(cell,1)
+						var spawn_location:Vector3=grid_map.map_to_local(cell)
+						turret_manager.spawnTurret(spawn_location)
 						
 						
 		else:
 				Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 			
-
-func spawnTurret(spawn_position:Vector3):
-	var new_turret:Node3D=turret.instantiate()
-	new_turret.position=spawn_position
-	grid_map.add_child(new_turret)
