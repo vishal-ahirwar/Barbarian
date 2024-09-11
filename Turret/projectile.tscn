@@ -24,4 +24,5 @@ shape = SubResource("SphereShape3D_cfn6l")
 wait_time = 2.0
 autostart = true
 
+[connection signal="area_entered" from="." to="." method="onAreaEntered"]
 [connection signal="timeout" from="FreeTimer" to="." method="destroyProjectile"]
