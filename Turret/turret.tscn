@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnu4qnkg01dod"]
+[gd_scene load_steps=9 format=3 uid="uid://cnu4qnkg01dod"]
 
 [ext_resource type="Script" path="res://Turret/turret.gd" id="1_0b5ws"]
 [ext_resource type="PackedScene" uid="uid://5q78mj6x0yht" path="res://Turret/projectile.tscn" id="2_ibkka"]
@@ -15,6 +15,43 @@ top_radius = 0.2
 bottom_radius = 0.2
 height = 1.0
 
+[sub_resource type="Animation" id="Animation_jlenv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base/Visor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.9, 1.05)]
+}
+
+[sub_resource type="Animation" id="Animation_6fdmh"]
+resource_name = "fire"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base/Visor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.9, 0), Vector3(0, 0.9, 1.05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eox54"]
+_data = {
+"RESET": SubResource("Animation_jlenv"),
+"fire": SubResource("Animation_6fdmh")
+}
+
 [node name="Turret" type="Node3D"]
 script = ExtResource("1_0b5ws")
 projectile = ExtResource("2_ibkka")
@@ -23,7 +60,7 @@ projectile = ExtResource("2_ibkka")
 mesh = SubResource("CylinderMesh_28071")
 
 [node name="Visor" type="MeshInstance3D" parent="Base"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90045, 1.05035)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 1.05)
 mesh = SubResource("BoxMesh_6lp4h")
 
 [node name="Barrel" type="MeshInstance3D" parent="Base/Visor"]
@@ -32,3 +69,8 @@ mesh = SubResource("CylinderMesh_221fd")
 
 [node name="FireTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eox54")
+}
