@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://l8bnwg5ygbco"]
+
+[node name="DifficultyManager" type="Node"]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

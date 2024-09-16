@@ -14,7 +14,7 @@ config/name="Barbarian"
 run/main_scene="res://Level/base_level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://_61730bcc-94b7-45ae-ad92-66b52216761b.png"
+boot_splash/image="res://logo.png"
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=1000
 

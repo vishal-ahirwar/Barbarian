@@ -1,5 +1,5 @@
 extends Node3D
-@onready var health_bar: ProgressBar = $HealthBar
+@onready var health_bar: ProgressBar = $MarginContainer/HealthBar
 @export
 var MAX_HEALTH:float=100
 

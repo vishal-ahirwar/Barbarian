@@ -5,6 +5,11 @@ extends PathFollow3D
 var speed:float=0.5
 @export
 var damage:float=25
+@export
+var balance:=20
+
+@onready
+var bank=get_tree().get_first_node_in_group("bank")
 
 @export var max_health:=100
 var current_health:int:
@@ -13,6 +18,8 @@ var current_health:int:
 			animation_player.play("takeDamage")
 		current_health=health_in
 		if current_health<=0:
+			if bank:
+				bank.current_balance+=balance	
 			queue_free()
 	
 @onready
