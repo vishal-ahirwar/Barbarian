@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dr71a0ik32wkp"]
+[gd_scene load_steps=23 format=3 uid="uid://dr71a0ik32wkp"]
 
 [ext_resource type="MeshLibrary" uid="uid://dp0ge5bd7y3dx" path="res://MeshLibraries/SpaceLibrary.tres" id="1_ll40j"]
 [ext_resource type="PackedScene" uid="uid://k0a5gmanham" path="res://RayPickerCamera/ray_picker_camera.tscn" id="1_uccgb"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://Level/bank.gd" id="8_m1svv"]
 [ext_resource type="PackedScene" uid="uid://l8bnwg5ygbco" path="res://DifficultyManager/difficulty_manager.tscn" id="9_bv6pf"]
 [ext_resource type="Script" path="res://DifficultyManager/difficulty_manager.gd" id="10_5ldpd"]
+[ext_resource type="PackedScene" uid="uid://ch0ewy5ohaj5e" path="res://UserInterface/game_over_widget.tscn" id="11_fm2ua"]
+[ext_resource type="Script" path="res://UserInterface/game_over_widget.gd" id="12_fihjy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gktjw"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -184,5 +186,8 @@ label_settings = SubResource("LabelSettings_xg32j")
 script = ExtResource("10_5ldpd")
 difficulty_curve = SubResource("Curve_a3bjl")
 enemy_health = SubResource("Curve_ar64i")
+
+[node name="GameOverWidget" parent="." instance=ExtResource("11_fm2ua")]
+script = ExtResource("12_fihjy")
 
 [connection signal="timeout" from="EnemyPath/SpawnTimer" to="EnemyPath" method="onSpawnTimerTimeout"]

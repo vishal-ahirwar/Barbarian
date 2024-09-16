@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://ch0ewy5ohaj5e"]
+
+[node name="GameOverWidget" type="CanvasLayer"]
