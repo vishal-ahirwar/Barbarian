@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://du6ta3qa0c2ee"]
+
+[ext_resource type="Script" path="res://Level/bank.gd" id="1_tsdgj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6seeb"]
+font_size = 24
+font_color = Color(0.72549, 0, 0.188235, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_07m26"]
+font_size = 24
+font_color = Color(0.72549, 0, 0.188235, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xg32j"]
+font_size = 24
+font_color = Color(1, 0, 0, 1)
+
+[node name="Bank" type="MarginContainer" groups=["bank"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+script = ExtResource("1_tsdgj")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Money : "
+label_settings = SubResource("LabelSettings_6seeb")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Reflexes.
+"
+label_settings = SubResource("LabelSettings_07m26")
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Remaining Time : "
+label_settings = SubResource("LabelSettings_xg32j")

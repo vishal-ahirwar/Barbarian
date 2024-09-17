@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dr71a0ik32wkp"]
+[gd_scene load_steps=27 format=3 uid="uid://dr71a0ik32wkp"]
 
 [ext_resource type="MeshLibrary" uid="uid://dp0ge5bd7y3dx" path="res://MeshLibraries/SpaceLibrary.tres" id="1_ll40j"]
 [ext_resource type="PackedScene" uid="uid://k0a5gmanham" path="res://RayPickerCamera/ray_picker_camera.tscn" id="1_uccgb"]
@@ -7,11 +7,13 @@
 [ext_resource type="Script" path="res://Enemy/enemy_path.gd" id="3_8crw7"]
 [ext_resource type="PackedScene" uid="uid://dx8541f42ytp1" path="res://Base/base.tscn" id="3_j0stv"]
 [ext_resource type="Script" path="res://Turret/turret_manager.gd" id="6_6yg0c"]
-[ext_resource type="Script" path="res://Level/bank.gd" id="8_m1svv"]
+[ext_resource type="PackedScene" uid="uid://du6ta3qa0c2ee" path="res://Bank/bank.tscn" id="8_fphfp"]
 [ext_resource type="PackedScene" uid="uid://l8bnwg5ygbco" path="res://DifficultyManager/difficulty_manager.tscn" id="9_bv6pf"]
 [ext_resource type="Script" path="res://DifficultyManager/difficulty_manager.gd" id="10_5ldpd"]
 [ext_resource type="PackedScene" uid="uid://ch0ewy5ohaj5e" path="res://UserInterface/game_over_widget.tscn" id="11_fm2ua"]
 [ext_resource type="Script" path="res://UserInterface/game_over_widget.gd" id="12_fihjy"]
+[ext_resource type="PackedScene" uid="uid://pv4qn7pjgcbx" path="res://EffectManager/effect_manager.tscn" id="13_8skip"]
+[ext_resource type="Texture2D" uid="uid://bj3ov0nl8idvf" path="res://Assets/star.png" id="13_htrhs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gktjw"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -35,29 +37,47 @@ _data = {
 }
 point_count = 7
 
-[sub_resource type="LabelSettings" id="LabelSettings_6seeb"]
-font_size = 24
-font_color = Color(0.72549, 0, 0.188235, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_07m26"]
-font_size = 24
-font_color = Color(0.72549, 0, 0.188235, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_xg32j"]
-font_size = 24
-font_color = Color(1, 0, 0, 1)
-
 [sub_resource type="Curve" id="Curve_a3bjl"]
-min_value = 0.25
+min_value = 0.15
 max_value = 2.0
-_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 2), 0.0, -1.85, 0, 1, Vector2(1, 0.15), -1.85, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_ar64i"]
 min_value = 10.0
-max_value = 300.0
-_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(1, 300), 0.0, 0.0, 0, 0]
+max_value = 150.0
+_data = [Vector2(0, 10), 0.0, 290.0, 0, 1, Vector2(1, 300), 290.0, 0.0, 1, 0]
 point_count = 2
+
+[sub_resource type="Curve" id="Curve_qjqb1"]
+min_value = 0.2
+max_value = 10.0
+_data = [Vector2(0, 0.2), 0.0, 9.8, 0, 1, Vector2(1, 10), 9.8, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_wt6y4"]
+font_size = 90
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gue7y"]
+bg_color = Color(0.245398, 0.609849, 0.999994, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2a377"]
+bg_color = Color(0, 0.262632, 0.499599, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkcm3"]
+bg_color = Color(0, 0.54441, 0.991584, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Node3D" type="Node3D"]
 
@@ -102,7 +122,7 @@ path_interval_type = 0
 path_interval = 1.0
 path_simplify_angle = 0.0
 path_rotation = 2
-path_local = false
+path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
@@ -116,7 +136,7 @@ path_interval_type = 0
 path_interval = 1.0
 path_simplify_angle = 0.0
 path_rotation = 2
-path_local = false
+path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
@@ -130,7 +150,7 @@ path_interval_type = 0
 path_interval = 1.0
 path_simplify_angle = 0.0
 path_rotation = 2
-path_local = false
+path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
@@ -139,55 +159,101 @@ path_joined = false
 wait_time = 2.0
 autostart = true
 
-[node name="Base" parent="." instance=ExtResource("3_j0stv")]
+[node name="Base" parent="." node_paths=PackedStringArray("difficulty_manager") instance=ExtResource("3_j0stv")]
+difficulty_manager = NodePath("../DifficultyManager")
 
 [node name="TurretManager" type="Node3D" parent="." node_paths=PackedStringArray("enemy_path")]
 script = ExtResource("6_6yg0c")
 turret = ExtResource("2_rk44v")
 enemy_path = NodePath("../EnemyPath")
 
-[node name="Bank" type="MarginContainer" parent="." node_paths=PackedStringArray("difficulty_manager") groups=["bank"]]
+[node name="Bank" parent="." node_paths=PackedStringArray("difficulty_manager") instance=ExtResource("8_fphfp")]
+difficulty_manager = NodePath("../DifficultyManager")
+
+[node name="DifficultyManager" parent="." instance=ExtResource("9_bv6pf")]
+script = ExtResource("10_5ldpd")
+game_time = 60.0
+difficulty_curve = SubResource("Curve_a3bjl")
+enemy_health = SubResource("Curve_ar64i")
+enemy_speed_curve = SubResource("Curve_qjqb1")
+
+[node name="GameOverWidget" parent="." node_paths=PackedStringArray("enemy_path", "base", "effect_manager", "label", "h_box_container", "difficulty_manager") instance=ExtResource("11_fm2ua")]
+script = ExtResource("12_fihjy")
+enemy_path = NodePath("../EnemyPath")
+base = NodePath("../Base")
+effect_manager = NodePath("../EffectManager")
+label = NodePath("CenterContainer/VBoxContainer/Label")
+h_box_container = NodePath("CenterContainer/VBoxContainer/HBoxContainer")
+difficulty_manager = NodePath("../DifficultyManager")
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverWidget"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-script = ExtResource("8_m1svv")
-difficulty_manager = NodePath("../DifficultyManager")
 
-[node name="Label" type="Label" parent="Bank"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverWidget/CenterContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Money : "
-label_settings = SubResource("LabelSettings_6seeb")
+theme_override_constants/separation = 8
 
-[node name="Label2" type="Label" parent="Bank"]
+[node name="Label" type="Label" parent="GameOverWidget/CenterContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-text = "Reflexes.
-"
-label_settings = SubResource("LabelSettings_07m26")
+text = "Victory"
+label_settings = SubResource("LabelSettings_wt6y4")
+horizontal_alignment = 1
+uppercase = true
 
-[node name="Label3" type="Label" parent="Bank"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOverWidget/CenterContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-text = "Remaining Time : "
-label_settings = SubResource("LabelSettings_xg32j")
+alignment = 1
 
-[node name="DifficultyManager" parent="." instance=ExtResource("9_bv6pf")]
-script = ExtResource("10_5ldpd")
-difficulty_curve = SubResource("Curve_a3bjl")
-enemy_health = SubResource("Curve_ar64i")
+[node name="TextureRect" type="TextureRect" parent="GameOverWidget/CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("13_htrhs")
+expand_mode = 2
+stretch_mode = 5
 
-[node name="GameOverWidget" parent="." instance=ExtResource("11_fm2ua")]
-script = ExtResource("12_fihjy")
+[node name="TextureRect2" type="TextureRect" parent="GameOverWidget/CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("13_htrhs")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="GameOverWidget/CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("13_htrhs")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameOverWidget/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="BtnNext" type="Button" parent="GameOverWidget/CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/hover = SubResource("StyleBoxFlat_gue7y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2a377")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tkcm3")
+text = "Next"
+
+[node name="BtnQuit" type="Button" parent="GameOverWidget/CenterContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/hover = SubResource("StyleBoxFlat_gue7y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2a377")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tkcm3")
+text = "Quit"
+
+[node name="EffectManager" parent="." instance=ExtResource("13_8skip")]
 
 [connection signal="timeout" from="EnemyPath/SpawnTimer" to="EnemyPath" method="onSpawnTimerTimeout"]
+[connection signal="game_over" from="DifficultyManager" to="EnemyPath" method="onGameOver"]
+[connection signal="game_over" from="DifficultyManager" to="GameOverWidget" method="onGameOver"]
+[connection signal="pressed" from="GameOverWidget/CenterContainer/VBoxContainer/HBoxContainer2/BtnNext" to="GameOverWidget" method="onBtnNextPressed"]
+[connection signal="pressed" from="GameOverWidget/CenterContainer/VBoxContainer/HBoxContainer2/BtnQuit" to="GameOverWidget" method="onBtnQuitPressed"]
